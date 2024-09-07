@@ -12,7 +12,10 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "%s | abook",
+  title: {
+    template: "%s | abook",
+    default: "abook",
+  },
   description: "The social media for powernerds",
 };
 
