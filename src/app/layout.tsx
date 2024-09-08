@@ -1,7 +1,9 @@
+import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
+import localFont from "next/font/local";
 import "./globals.css";
+import ReactQueryProvider from "./ReactQueryProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,10 +16,10 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | abook",
-    default: "abook",
+    template: "%s | bugbook",
+    default: "bugbook",
   },
-  description: "The social media for powernerds",
+  description: "The social media app for powernerds",
 };
 
 export default function RootLayout({
@@ -28,14 +30,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <ReactQueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </ReactQueryProvider>
+        <Toaster />
       </body>
     </html>
   );
